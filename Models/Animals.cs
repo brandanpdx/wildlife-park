@@ -24,7 +24,7 @@ namespace Park.Models
     {
       return _species;
     }
-    public string Gender()
+    public string GetGender()
     {
       return _gender;
     }

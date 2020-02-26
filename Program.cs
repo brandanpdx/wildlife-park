@@ -7,6 +7,7 @@ namespace Models
 {
   public class Program 
   {
+    public static List<Animal> Animals = new List<Animal>(6) {};
     public static void Main()
     {
       Animal aslan = new Animal("Aslan", "Lion", "Male", "Carnivore", 60);
@@ -14,15 +15,18 @@ namespace Models
       Animal mo = new Animal("Mo", "Otter", "Male", "Omnivore", 4);
       Animal frank = new Animal("Frank", "Black Bear", "Male", "Omnivore", 32);
 
-      List<Animal> Animals = new List<Animal>(6) {aslan, geoffrey, mo, frank};
+      Animals.Add(aslan);
+      Animals.Add(geoffrey);
+      Animals.Add(mo);
+      Animals.Add(frank);
       Console.WriteLine("Welcome to the Epicodus City Zoo Zookeeper Portal!");
       Init();
     }
 
-      public static void Init()
-      {
+    public static void Init()
+    {
       Console.WriteLine("What would you like to do today?");
-      Console.WriteLine("Press [A] to add an animal.  Press [D] to display all animals.  Press [L] to lookup a specific animal." );
+      Console.WriteLine("Press [A] to add an animal.  Press [D] to display all animals.  Press [L] to lookup a specific animal.  Press [Q] to Quit." );
       string userSelect = Console.ReadLine();
       if (userSelect == "A")
       {
@@ -36,6 +40,10 @@ namespace Models
       {
         Lookup();
       }
+      else if (userSelect == "Q")
+      {
+        Quit();
+      }
       else 
       {
         Console.WriteLine("Invalid Selection!");
@@ -45,17 +53,48 @@ namespace Models
 
     public static void Add()
     {
-      Console.WriteLine("This is the add function placeholder");
+      Console.WriteLine("What is the name of your animal?");
+      string newName = Console.ReadLine();
+      Console.WriteLine("What is the species of your animal?");
+      string newSpecies = Console.ReadLine();
+      Console.WriteLine("What is the gender of your animal?");
+      string newGender = Console.ReadLine();
+      Console.WriteLine("What is the diet of your animal?");
+      string newDiet = Console.ReadLine();
+      Console.WriteLine("What is the age of your animal?");
+      string userAge = Console.ReadLine();
+      int newAge = int.Parse(userAge);
+      Animal newAnimal = new Animal(newName, newSpecies, newGender, newDiet, newAge);
+      Animals.Add(newAnimal);
+      Console.Write(newName + " has been added to your animal list! \n" ); 
+      Init();
     }
 
     public static void Display()
     {
-      Console.WriteLine("This is the display function placeholder");
+      foreach (Animal animal in Animals)
+      {
+        Console.WriteLine("------------------------");
+        Console.WriteLine("Name: " + animal.GetName());
+        Console.WriteLine("Species : " + animal.GetSpecies());
+        Console.WriteLine("Gender : " + animal.GetGender());
+        Console.WriteLine("Diet : " + animal.GetDiet());
+        Console.WriteLine("Age : " + animal.GetAge());
+      }
+      Init();
     }
     
     public static void Lookup()
     {
-      Console.WriteLine("This is the lookup function placeholder");
+      foreach (Animal animal in Animals) 
+      {
+        
+      }
+    }
+
+    public static void Quit()
+    {
+      Console.WriteLine("Peace out, trout!");
     }
    
   }
