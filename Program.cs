@@ -84,14 +84,82 @@ namespace Models
       Init();
     }
     
+
+
     public static void Lookup()
     {
-      foreach (Animal animal in Animals) 
+      Console.WriteLine("Would you like to lookup animal by name or species?");
+      string lookupBy = Console.ReadLine();
+      if (lookupBy == "name")
       {
-        
+        LookupByName();
+      }
+      else if (lookupBy == "species")
+      {
+        LookupBySpecies();
+      }
+      else 
+      {
+        Console.WriteLine("Sorry, please search by [name] or [species]");
+        Lookup();
       }
     }
+    public static void LookupByName()
+    {
+      List<Animal> AnimalNameMatchingSearch = new List<Animal>(1);
 
+      Console.WriteLine("What is the name of the animal you're looking for?");
+      string userAnimalLookup = Console.ReadLine();
+      foreach (Animal animal in Animals) 
+      {
+        if (userAnimalLookup == animal.GetName())
+        {
+          AnimalNameMatchingSearch.Add(animal); 
+        }
+      }
+
+      if (AnimalNameMatchingSearch.Count > 0)
+      {
+        foreach (Animal animal in AnimalNameMatchingSearch)
+        {
+          Console.WriteLine("------------------------");
+          Console.WriteLine("Name: " + animal.GetName());
+          Console.WriteLine("Species : " + animal.GetSpecies());
+          Console.WriteLine("Gender : " + animal.GetGender());
+          Console.WriteLine("Diet : " + animal.GetDiet());
+          Console.WriteLine("Age : " + animal.GetAge());
+        }
+      }
+      else 
+      {
+        Console.WriteLine("Sorry, no animals match that name.");
+        LookupByName();
+      }
+    }
+  
+
+    public static void LookupBySpecies()
+    {
+      Console.WriteLine("What is the species of the animal you're looking for?");
+      string userAnimalLookup = Console.ReadLine();
+      foreach (Animal animal in Animals) 
+      {
+        if (userAnimalLookup == animal.GetSpecies())
+        {
+          Console.WriteLine("------------------------");
+          Console.WriteLine("Name: " + animal.GetName());
+          Console.WriteLine("Species : " + animal.GetSpecies());
+          Console.WriteLine("Gender : " + animal.GetGender());
+          Console.WriteLine("Diet : " + animal.GetDiet());
+          Console.WriteLine("Age : " + animal.GetAge());
+        }
+        else
+        {
+          Console.WriteLine("Sorry, cannot find that species.");
+        }
+      }
+    }
+    
     public static void Quit()
     {
       Console.WriteLine("Peace out, trout!");
