@@ -87,7 +87,7 @@ namespace Models
     public static void Lookup()
     {
       List<Animal> AnimalNameMatchingSearch = new List<Animal>(1);
-      Console.WriteLine("Would you like to lookup animal by name or species?");
+      Console.WriteLine("Would you like to lookup animal by [name], [species], [gender], or [diet]?");
       string query = Console.ReadLine();
 
       Console.WriteLine("What is the " + query + " of the animal you're looking for?");
@@ -150,7 +150,7 @@ namespace Models
       }
       else 
       {
-        Console.WriteLine("Sorry, no animals match that name.");
+        Console.WriteLine("Sorry, no animals match that " + query + ".");
         Lookup();
       }
     }
